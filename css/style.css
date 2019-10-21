@@ -3,7 +3,7 @@
   }
   
   body {
-    background:radial-gradient(white, rgb(18, 187, 71)) fixed;
+    background:radial-gradient(white, rgb(91, 18, 187)) fixed;
     text-align: center;
     font-family: 'Righteous', sans-serif;
   
@@ -21,21 +21,20 @@
     border: 10px solid silver;
     border-radius: 5%;
     cursor: pointer;
-    transition: 0.8s;
+    
   }
   
 
   
   h1{
-      color:#4e5305;
-      transition: 0.8s;
+      color:#530532;
+      
   }
   h1:hover{
-      border: 2px solid #3498db;
-      background-color: #4b4075;
-      color: #3498db;
-      transform: scale(1.2);
-  }
+      border: 2px solid #47db34;
+      background-color: #75404d;
+      
+    }
   
   
   #element{
@@ -44,11 +43,5 @@
       padding-top: 120px;
   }
 
-  #righttitle,#middletitle,#lefttitle{
-      transition: 0.8s;
-  }
-  #righttitle:hover,#middletitle:hover,#lefttitle:hover{
-transform: scale(1.8);
-color: #4b4075;
-
-}
+  
+  

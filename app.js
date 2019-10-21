@@ -1,105 +1,105 @@
 'use strict';
-function element(title, src) {
+function Elemant(title, src) {
     this.title = title;
     this.src = src;
     this.click = 0;
     this.show = 0;
-    element.all.push(this);
+    Elemant.all.push(this);
   }
   
-  element.roundCtr = 0;
-  element.roundLimit = 25;
+  Elemant.roundCtr = 0;
+  Elemant.roundLimit = 20;
   
-  element.all = [];
+  Elemant.all = [];
   
-  element.container = document.getElementById('item-container');
-  element.leftImage = document.getElementById('leftimage');
-  element.middleImage = document.getElementById('middleimage');
-  element.rightImage = document.getElementById('rightimage');
+  Elemant.container = document.getElementById('item-container');
+  Elemant.leftImage = document.getElementById('leftimage');
+  Elemant.middleImage = document.getElementById('middleimage');
+  Elemant.rightImage = document.getElementById('rightimage');
   
-  element.leftTitle = document.getElementById('lefttitle');
-  element.middleTitle = document.getElementById('middletitle');
-  element.rightTitle = document.getElementById('righttitle');
+  Elemant.leftTitle = document.getElementById('lefttitle');
+  Elemant.middleTitle = document.getElementById('middletitle');
+  Elemant.rightTitle = document.getElementById('righttitle');
   
-  element.leftObject = null;
-  element.middleObject = null;
-  element.rightObject = null;
+  Elemant.leftObject = null;
+  Elemant.middleObject = null;
+  Elemant.rightObject = null;
   
-  new element('bag', 'images/bag.jpg');
-  new element('banana', 'images/banana.jpg');
-  new element('bathroom', 'images/bathroom.jpg');
-  new element('boots', 'images/boots.jpg');
-  new element('breakfast', 'images/breakfast.jpg');
-  new element('bubblegum', 'images/bubblegum.jpg');
-  new element('chair', 'images/chair.jpg');
-  new element('cthulhu', 'images/cthulhu.jpg');
-  new element('dog-duck', 'images/dog-duck.jpg');
-  new element('dragon', 'images/dragon.jpg');
-  new element('pen', 'images/pen.jpg');
-  new element('pet-sweep', 'images/pet-sweep.jpg');
-  new element('scissors', 'images/scissors.jpg');
-  new element('shark', 'images/shark.jpg');
-  new element('sweep', 'images/sweep.png');
-  new element('tauntaun', 'images/tauntaun.jpg');
-  new element('unicorn', 'images/unicorn.jpg');
-  new element('usb', 'images/usb.gif');
-  new element('water-can', 'images/water-can.jpg');
-  new element('wine-glass', 'images/wine-glass.jpg');
+  new Elemant('bag', 'images/bag.jpg');
+  new Elemant('banana', 'images/banana.jpg');
+  new Elemant('bathroom', 'images/bathroom.jpg');
+  new Elemant('boots', 'images/boots.jpg');
+  new Elemant('breakfast', 'images/breakfast.jpg');
+  new Elemant('bubblegum', 'images/bubblegum.jpg');
+  new Elemant('chair', 'images/chair.jpg');
+  new Elemant('cthulhu', 'images/cthulhu.jpg');
+  new Elemant('dog-duck', 'images/dog-duck.jpg');
+  new Elemant('dragon', 'images/dragon.jpg');
+  new Elemant('pen', 'images/pen.jpg');
+  new Elemant('pet-sweep', 'images/pet-sweep.jpg');
+  new Elemant('scissors', 'images/scissors.jpg');
+  new Elemant('shark', 'images/shark.jpg');
+  new Elemant('sweep', 'images/sweep.png');
+  new Elemant('tauntaun', 'images/tauntaun.jpg');
+  new Elemant('unicorn', 'images/unicorn.jpg');
+  new Elemant('usb', 'images/usb.gif');
+  new Elemant('water-can', 'images/water-can.jpg');
+  new Elemant('wine-glass', 'images/wine-glass.jpg');
   function renderItems() {
   
-    var forbidden = [element.leftObject, element.middleObject, element.rightObject ];
+    var item = [Elemant.leftObject, Elemant.middleObject, Elemant.rightObject ];
   
     do {
   
-      element.leftObject = getRandomGoat();
+      Elemant.leftObject = getRandomGoat();
   
-    } while (forbidden.includes(element.leftObject))
+    } while (item.includes(Elemant.leftObject))
   
-    forbidden.push(element.leftObject);
+    item.push(Elemant.leftObject);
   
     do {
   
-      element.middleObject = getRandomGoat();
+      Elemant.middleObject = getRandomGoat();
   
-    } while (forbidden.includes(element.middleObject))
+    } while (item.includes(Elemant.middleObject))
   
-    forbidden.push(element.middleObject);
+    item.push(Elemant.middleObject);
     do {
   
-      element.rightObject = getRandomGoat();
+      Elemant.rightObject = getRandomGoat();
   
-    } while(forbidden.includes(element.rightObject));
+    } while(item.includes(Elemant.rightObject));
   
     
     
-    element.leftObject.shownCtr++;
-    element.middleObject.shownCtr++;
-    element.rightObject.shownCtr++;
+    Elemant.leftObject.show++;
+    Elemant.middleObject.show++;
+    Elemant.rightObject.show++;
   
-    var leftImageElement = element.leftImage;
-    var middleImageElement = element.middleImage;
-    var rightItemImageElement = element.rightImage;
+    var leftImageElement = Elemant.leftImage;
+    var middleImageElement = Elemant.middleImage;
+    var rightItemImageElement = Elemant.rightImage;
   
-    leftImageElement.setAttribute('src', element.leftObject.src);
-    leftImageElement.setAttribute('alt', element.leftObject.title);
-    middleImageElement.setAttribute('src', element.middleObject.src);
-    middleImageElement.setAttribute('alt', element.middleObject.title);
-    rightItemImageElement.setAttribute('src', element.rightObject.src);
-    rightItemImageElement.setAttribute('alt', element.rightObject.title);
+    leftImageElement.setAttribute('src', Elemant.leftObject.src);
+    leftImageElement.setAttribute('alt', Elemant.leftObject.title);
+    middleImageElement.setAttribute('src', Elemant.middleObject.src);
+    middleImageElement.setAttribute('alt', Elemant.middleObject.title);
+    rightItemImageElement.setAttribute('src', Elemant.rightObject.src);
+    rightItemImageElement.setAttribute('alt', Elemant.rightObject.title);
   
-    element.leftTitle.textContent = element.leftObject.title;
-    element.middleTitle.textContent = element.middleObject.title;
-    element.rightTitle.textContent = element.rightObject.title;
+    Elemant.leftTitle.textContent = Elemant.leftObject.title;
+    Elemant.middleTitle.textContent = Elemant.middleObject.title;
+    Elemant.rightTitle.textContent = Elemant.rightObject.title;
   }
   
   function getRandomGoat() {
-    var index = Math.floor(Math.random() * element.all.length);
-    return element.all[index];
+    var index = Math.floor(Math.random() * Elemant.all.length);
+    return Elemant.all[index];
   }
   
-  //////
+  // not using this, just showing the better way vs. ceil
   function randomInRange(min, max) {
-    var range = max - min + 1; 
+    var range = max - min + 1; // add one since we will be flooring
     var rand = Math.floor(Math.random() * range) + min
     return rand;
   }
@@ -112,8 +112,8 @@ function element(title, src) {
     tableBody.innerHTML = '';
     
 
-    for (var i = 0; i < element.all.length; i++) {
-      var item = element.all[i];
+    for (var i = 0; i < Elemant.all.length; i++) {
+      var item = Elemant.all[i];
       var row = addElement('tr', tableBody);
       addElement('td', row, item.title);
       addElement('td', row, '' + item.click + ' times');
@@ -137,11 +137,11 @@ function element(title, src) {
     var itemClicked;
   
     if(clickedId === 'leftimage') {
-      itemClicked = element.leftObject;
+      itemClicked = Elemant.leftObject;
     } else if (clickedId === 'middleimage') {
-      itemClicked = element.middleObject;
+      itemClicked = Elemant.middleObject;
     }else if (clickedId === 'rightimage') {
-      itemClicked = element.rightObject;
+      itemClicked = Elemant.rightObject;
     }
      else {
       console.log('Um, what was clicked on???', clickedId);
@@ -149,15 +149,15 @@ function element(title, src) {
   
     if(itemClicked) {
       itemClicked.clickCtr++;
-      element.roundCtr++;
+      Elemant.roundCtr++;
   
       tableTotal();
   
-      if(element.roundCtr === element.roundLimit) {
+      if(Elemant.roundCtr === Elemant.roundLimit) {
   
         alert('No more clicking for you!');
   
-        element.container.removeEventListener('click', clickHand);
+        Elemant.container.removeEventListener('click', clickHand);
   
       } else {
   
@@ -166,9 +166,11 @@ function element(title, src) {
     }
   }
   
-  //
-  element.container.addEventListener('click', clickHand);
+  // Notice that we're attaching event listener to the container, 
+  // but event.target will allow us to which child element was actually clicked
+  Elemant.container.addEventListener('click', clickHand);
   
   tableTotal();
   
   renderItems();
+
