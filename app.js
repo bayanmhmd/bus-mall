@@ -7,8 +7,8 @@ function Elemant(title, src) {
     Elemant.all.push(this);
   }
   
-  Elemant.roundCtr = 0;
-  Elemant.roundLimit = 20;
+  Elemant.round = 0;
+  Elemant.roundLimit = 25;
   
   Elemant.all = [];
   
@@ -97,9 +97,9 @@ function Elemant(title, src) {
     return Elemant.all[index];
   }
   
-  // not using this, just showing the better way vs. ceil
+  
   function randomInRange(min, max) {
-    var range = max - min + 1; // add one since we will be flooring
+    var range = max - min + 1; 
     var rand = Math.floor(Math.random() * range) + min
     return rand;
   }
@@ -144,16 +144,16 @@ function Elemant(title, src) {
       itemClicked = Elemant.rightObject;
     }
      else {
-      console.log('Um, what was clicked on???', clickedId);
+      console.log('how many time you clicked on???', clickedId);
     }
   
     if(itemClicked) {
-      itemClicked.clickCtr++;
-      Elemant.roundCtr++;
+      itemClicked.click++;
+      Elemant.round++;
   
       tableTotal();
   
-      if(Elemant.roundCtr === Elemant.roundLimit) {
+      if(Elemant.round === Elemant.roundLimit) {
   
         alert('No more clicking for you!');
   
@@ -165,9 +165,7 @@ function Elemant(title, src) {
       }
     }
   }
-  
-  // Notice that we're attaching event listener to the container, 
-  // but event.target will allow us to which child element was actually clicked
+
   Elemant.container.addEventListener('click', clickHand);
   
   tableTotal();
