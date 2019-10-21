@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background:radial-gradient(white, rgb(91, 18, 187)) fixed;
+    text-align: center;
+    font-family: 'Righteous', sans-serif;
+  
+  }
+  
+  section div {
+    width: 25%;
+    float: left;
+    padding: 10px;
+  }
+  
+  section div img {
+    max-width: 100%;
+    height: 200px;
+    border: 10px solid silver;
+    border-radius: 5%;
+    cursor: pointer;
+    
+  }
+  
+
+  
+  h1{
+      color:#530532;
+      
+  }
+  h1:hover{
+      border: 2px solid #47db34;
+      background-color: #75404d;
+      
+    }
+  
+  
+  #element{
+      display: block;
+      margin: auto;
+      padding-top: 120px;
+  }
+
+  
+  
