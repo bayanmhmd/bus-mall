@@ -105,33 +105,52 @@ function Elemant(title, src) {
     return rand;
   }
   
-  function tableTotal() {
+  // function tableTotal() {
   
-    var tableBody = document.getElementById('Table');
+  //   var tableBody = document.getElementById('Table');
   
   
-    tableBody.innerHTML = '';
+  //   tableBody.innerHTML = '';
     
 
-    for (var i = 0; i < Elemant.all.length; i++) {
-      var item = Elemant.all[i];
-      var row = addElement('tr', tableBody);
-      addElement('td', row, item.title);
-      addElement('td', row, '' + item.click + ' times');
-      addElement('td', row, '' + item.show + ' times');
+  //   for (var i = 0; i < Elemant.all.length; i++) {
+  //     var item = Elemant.all[i];
+  //     var row = addElement('tr', tableBody);
+  //     addElement('td', row, item.title);
+  //     addElement('td', row, '' + item.click + ' times');
+  //     addElement('td', row, '' + item.show + ' times');
 
-    }
-  }
+  //   }
+  // }
   
   function addElement(tag, container, text) {
-    var element = document.createElement(tag);
-    container.appendChild(element);
+    var elemant = document.createElement(tag);
+    container.appendChild(elemant);
     if(text) {
-      element.textContent = text;
+      elemant.textContent = text;
     }
-    return element;
+    return elemant;
   }
   
+  // function renderSentences(){
+
+  //   var container1  = document.getElementById('report-sentences');
+
+  //   for (var i=0; i < Elemant.all.length;i ++) {
+  //     var currentproduct = Elemant.all[i];
+
+  //   }
+  // }
+  function renderSentences(){
+console.log("hello");*
+    var container=document.getElementById('report-sentences');
+    for (var i =0;i<Elemant.all.length;i++){
+      
+      var product=Elemant.all[i];
+      var sentence=product.title +' had '+ product.click +' votes and was shown '+ product.show  +'times'
+    addElement('p',container,sentence)
+      }
+  }
   function clickHand(event) {
   
     var clickedId = event.target.id;
@@ -152,7 +171,7 @@ function Elemant(title, src) {
       itemClicked.click++;
       Elemant.round++;
   
-      tableTotal();
+      // tableTotal();
   
       if(Elemant.round === Elemant.roundLimit) {
   
@@ -160,6 +179,7 @@ function Elemant(title, src) {
   
         Elemant.container.removeEventListener('click', clickHand);
   
+        renderSentences();
       } else {
   
         renderItems();
@@ -169,7 +189,7 @@ function Elemant(title, src) {
 
   Elemant.container.addEventListener('click', clickHand);
   
-  tableTotal();
+  // tableTotal();
   
   renderItems();
 
