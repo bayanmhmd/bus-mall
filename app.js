@@ -1,4 +1,5 @@
 'use strict';
+// testing remove me
 function Elemant(title, src) {
     this.title = title;
     this.src = src;
@@ -104,33 +105,52 @@ function Elemant(title, src) {
     return rand;
   }
   
-  function tableTotal() {
+  // function tableTotal() {
   
-    var tableBody = document.getElementById('Table');
+  //   var tableBody = document.getElementById('Table');
   
   
-    tableBody.innerHTML = '';
+  //   tableBody.innerHTML = '';
     
 
-    for (var i = 0; i < Elemant.all.length; i++) {
-      var item = Elemant.all[i];
-      var row = addElement('tr', tableBody);
-      addElement('td', row, item.title);
-      addElement('td', row, '' + item.click + ' times');
-      addElement('td', row, '' + item.show + ' times');
+  //   for (var i = 0; i < Elemant.all.length; i++) {
+  //     var item = Elemant.all[i];
+  //     var row = addElement('tr', tableBody);
+  //     addElement('td', row, item.title);
+  //     addElement('td', row, '' + item.click + ' times');
+  //     addElement('td', row, '' + item.show + ' times');
 
-    }
-  }
+  //   }
+  // }
   
   function addElement(tag, container, text) {
-    var element = document.createElement(tag);
-    container.appendChild(element);
+    var elemant = document.createElement(tag);
+    container.appendChild(elemant);
     if(text) {
-      element.textContent = text;
+      elemant.textContent = text;
     }
-    return element;
+    return elemant;
   }
   
+  // function renderSentences(){
+
+  //   var container1  = document.getElementById('report-sentences');
+
+  //   for (var i=0; i < Elemant.all.length;i ++) {
+  //     var currentproduct = Elemant.all[i];
+
+  //   }
+  // }
+  function renderSentences(){
+console.log("hello");
+    var container=document.getElementById('report-sentences');
+    for (var i =0;i<Elemant.all.length;i++){
+      
+      var product=Elemant.all[i];
+      var sentence=product.title +' had '+ product.click +' votes and was shown '+ product.show  +'times'
+    addElement('p',container,sentence)
+      }
+  }
   function clickHand(event) {
   
     var clickedId = event.target.id;
@@ -151,7 +171,7 @@ function Elemant(title, src) {
       itemClicked.click++;
       Elemant.round++;
   
-      tableTotal();
+      // tableTotal();
   
       if(Elemant.round === Elemant.roundLimit) {
   
@@ -159,6 +179,8 @@ function Elemant(title, src) {
   
         Elemant.container.removeEventListener('click', clickHand);
   
+        renderSentences();
+        renderChart();
       } else {
   
         renderItems();
@@ -168,7 +190,145 @@ function Elemant(title, src) {
 
   Elemant.container.addEventListener('click', clickHand);
   
-  tableTotal();
+  // tableTotal();
   
   renderItems();
 
+  // function makeAChart(){
+
+  //   var clickArray = [];
+  //   var shownArray =[];
+  
+  //   for(var i = 0; i < Elemant.all.length; i++){
+  //     var insteadValue  = Elemant.all[i].click;
+  //     clickArray.push( insteadValue);
+  //   }
+  
+  //   for(var i = 0; i < Elemant.all.length; i++){
+  //     var  insteadValue = Elemant.all[i].show;
+  //     shownArray.push( insteadValue);
+  //   }
+  
+  //   var ctx = document.getElementById('elemant').getContext('2d');
+  //   var chart= new Chart(ctx, {
+  //   // The type of chart we want to create
+  //     type: 'bar',
+  
+  //     // The data for our dataset
+
+  //     data: {
+  //       labels: ,
+  //       datasets: [{
+  //         label: 'Bus Mall Products click',
+  //         backgroundColor: '#FFC14F',
+  //         borderColor: '#E89D48',
+  //         data: makeAChart
+  //       },{
+  //         label: 'Bus Mall Products shown',
+  //         backgroundColor: '#E86E48',
+  //         borderColor: '#FF9A5C',
+  //         data: makeAChart
+  //       }]
+  //     },
+      
+     
+  //     options: {
+  //       scales: {
+  //         yAxes: [{
+  //           ticks: {
+  //             beginAtZero: true
+  //           }
+  //         }]
+  //       }
+  //     }
+  //   });
+  // }
+  function makeAChart() {
+
+    var productNamesArray = [];
+    var productLikesArray = [];
+
+    for (var i = 0; i < Elemant.all.length; i++) {
+        var singlepictureName = Elemant.all[i];
+        productNamesArray.push(singlepictureName.title);
+    }
+
+    for (var i = 0; i < Elemant.all.length; i++) {
+        var singlePictureLikes = Elemant.all[i];
+        productLikesArray.push(singlePictureLikes.click);
+    }
+}
+
+function renderChart() {
+
+    // Modified from https://jsfiddle.net/nagix/bL8hpk6n/
+
+    var productNames = [];
+    var productClicks = [];
+    var productShown = [];
+
+    for(var i = 0; i < Elemant.all.length; i++) {
+        var currentProduct = Elemant.all[i];
+        productNames.push(currentProduct.title);
+        productClicks.push(currentProduct.click);
+        productShown.push(currentProduct.show);
+
+    }
+
+    var data = {
+        labels: productNames ,
+        datasets: [{
+          label: "Clicked",
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderWidth: 1,
+          data: productClicks,
+          xAxisID: "bar-x-axis1",
+        }, {
+          label: "Shown",
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderWidth: 1,
+          data: productShown,
+          xAxisID: "bar-x-axis2",
+        }]
+      };
+      
+      var options = {
+        scales: {
+          xAxes: [{
+            stacked: true,
+            id: "bar-x-axis1",
+            barThickness: 20,
+          }, {
+            display: false,
+            stacked: true,
+            id: "bar-x-axis2",
+            barThickness: 40,
+            // these are needed because the bar controller defaults set only the first x axis properties
+            type: 'category',
+            categoryPercentage: 0.8,
+            barPercentage: 0.9,
+            gridLines: {
+              offsetGridLines: true
+            },
+            offset: true
+          }],
+          yAxes: [{
+            stacked: false,
+            ticks: {
+              beginAtZero: true
+            },
+          }]
+      
+        }
+      };
+      
+      var ctx = document.getElementById("chart").getContext("2d");
+      var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+      });
+
+
+
+}
