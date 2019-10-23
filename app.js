@@ -176,10 +176,11 @@ console.log("hello");
       if(Elemant.round === Elemant.roundLimit) {
   
         alert('No more clicking for you!');
-  
+    makeAGoatChart();
         Elemant.container.removeEventListener('click', clickHand);
   
         renderSentences();
+      
       } else {
   
         renderItems();
@@ -193,3 +194,46 @@ console.log("hello");
   
   renderItems();
 
+  function makeAGoatChart(){
+
+    var goatNamesArray = [];
+    var goatLikesArray =[];
+  
+    for(var i = 0; i < Elemant.all.length; i++){
+      var singleGoatName = allGoats[i].name;
+      goatNamesArray.push(singleGoatName);
+    }
+  
+    for(var i = 0; i < Elemant.all.length; i++){
+      var singleGoatLikes = Elemant.all[i].clicks;
+      goatLikesArray.push(singleGoatLikes);
+    }
+  
+    var ctx = document.getElementById('elemant').getContext('2d');
+    var chart= new Chart(ctx, {
+    // The type of chart we want to create
+      type: 'bar',
+  
+      // The data for our dataset
+      data: {
+        labels: goatNamesArray,
+        datasets: [{
+          label: 'Goat Likes',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: goatLikesArray
+        }]
+      },
+  
+      // Configuration options go here
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  }
