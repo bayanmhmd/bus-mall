@@ -142,7 +142,7 @@ function Elemant(title, src) {
   //   }
   // }
   function renderSentences(){
-console.log("hello");*
+console.log("hello");
     var container=document.getElementById('report-sentences');
     for (var i =0;i<Elemant.all.length;i++){
       
