@@ -176,7 +176,7 @@ console.log("hello");
       if(Elemant.round === Elemant.roundLimit) {
   
         alert('No more clicking for you!');
-    makeAGoatChart();
+    makeAChart();
         Elemant.container.removeEventListener('click', clickHand);
   
         renderSentences();
@@ -194,19 +194,19 @@ console.log("hello");
   
   renderItems();
 
-  function makeAGoatChart(){
+  function makeAChart(){
 
-    var goatNamesArray = [];
-    var goatLikesArray =[];
+    var NamesArray = [];
+    var LikesArray =[];
   
     for(var i = 0; i < Elemant.all.length; i++){
-      var singleGoatName = allGoats[i].name;
-      goatNamesArray.push(singleGoatName);
+      var singleName = Elemant.all[i].name;
+      NamesArray.push(singleName);
     }
   
     for(var i = 0; i < Elemant.all.length; i++){
-      var singleGoatLikes = Elemant.all[i].clicks;
-      goatLikesArray.push(singleGoatLikes);
+      var singleLikes = Elemant.all[i].clicks;
+      LikesArray.push(singleLikes);
     }
   
     var ctx = document.getElementById('elemant').getContext('2d');
@@ -216,12 +216,12 @@ console.log("hello");
   
       // The data for our dataset
       data: {
-        labels: goatNamesArray,
+        labels: NamesArray,
         datasets: [{
           label: 'Goat Likes',
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
-          data: goatLikesArray
+          data: LikesArray
         }]
       },
   
