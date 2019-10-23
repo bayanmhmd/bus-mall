@@ -176,11 +176,11 @@ console.log("hello");
       if(Elemant.round === Elemant.roundLimit) {
   
         alert('No more clicking for you!');
-    makeAChart();
+  
         Elemant.container.removeEventListener('click', clickHand);
   
         renderSentences();
-      
+        renderChart();
       } else {
   
         renderItems();
@@ -194,46 +194,141 @@ console.log("hello");
   
   renderItems();
 
-  function makeAChart(){
+  // function makeAChart(){
 
-    var NamesArray = [];
-    var LikesArray =[];
+  //   var clickArray = [];
+  //   var shownArray =[];
   
-    for(var i = 0; i < Elemant.all.length; i++){
-      var singleName = Elemant.all[i].name;
-      NamesArray.push(singleName);
+  //   for(var i = 0; i < Elemant.all.length; i++){
+  //     var insteadValue  = Elemant.all[i].click;
+  //     clickArray.push( insteadValue);
+  //   }
+  
+  //   for(var i = 0; i < Elemant.all.length; i++){
+  //     var  insteadValue = Elemant.all[i].show;
+  //     shownArray.push( insteadValue);
+  //   }
+  
+  //   var ctx = document.getElementById('elemant').getContext('2d');
+  //   var chart= new Chart(ctx, {
+  //   // The type of chart we want to create
+  //     type: 'bar',
+  
+  //     // The data for our dataset
+
+  //     data: {
+  //       labels: ,
+  //       datasets: [{
+  //         label: 'Bus Mall Products click',
+  //         backgroundColor: '#FFC14F',
+  //         borderColor: '#E89D48',
+  //         data: makeAChart
+  //       },{
+  //         label: 'Bus Mall Products shown',
+  //         backgroundColor: '#E86E48',
+  //         borderColor: '#FF9A5C',
+  //         data: makeAChart
+  //       }]
+  //     },
+      
+     
+  //     options: {
+  //       scales: {
+  //         yAxes: [{
+  //           ticks: {
+  //             beginAtZero: true
+  //           }
+  //         }]
+  //       }
+  //     }
+  //   });
+  // }
+  function makeAChart() {
+
+    var productNamesArray = [];
+    var productLikesArray = [];
+
+    for (var i = 0; i < Elemant.all.length; i++) {
+        var singlepictureName = Elemant.all[i];
+        productNamesArray.push(singlepictureName.title);
     }
-  
-    for(var i = 0; i < Elemant.all.length; i++){
-      var singleLikes = Elemant.all[i].clicks;
-      LikesArray.push(singleLikes);
+
+    for (var i = 0; i < Elemant.all.length; i++) {
+        var singlePictureLikes = Elemant.all[i];
+        productLikesArray.push(singlePictureLikes.click);
     }
-  
-    var ctx = document.getElementById('elemant').getContext('2d');
-    var chart= new Chart(ctx, {
-    // The type of chart we want to create
-      type: 'bar',
-  
-      // The data for our dataset
-      data: {
-        labels: NamesArray,
+}
+
+function renderChart() {
+
+    // Modified from https://jsfiddle.net/nagix/bL8hpk6n/
+
+    var productNames = [];
+    var productClicks = [];
+    var productShown = [];
+
+    for(var i = 0; i < Elemant.all.length; i++) {
+        var currentProduct = Elemant.all[i];
+        productNames.push(currentProduct.title);
+        productClicks.push(currentProduct.click);
+        productShown.push(currentProduct.show);
+
+    }
+
+    var data = {
+        labels: productNames ,
         datasets: [{
-          label: 'Goat Likes',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: LikesArray
+          label: "Clicked",
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderWidth: 1,
+          data: productClicks,
+          xAxisID: "bar-x-axis1",
+        }, {
+          label: "Shown",
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderWidth: 1,
+          data: productShown,
+          xAxisID: "bar-x-axis2",
         }]
-      },
-  
-      // Configuration options go here
-      options: {
+      };
+      
+      var options = {
         scales: {
+          xAxes: [{
+            stacked: true,
+            id: "bar-x-axis1",
+            barThickness: 20,
+          }, {
+            display: false,
+            stacked: true,
+            id: "bar-x-axis2",
+            barThickness: 40,
+            // these are needed because the bar controller defaults set only the first x axis properties
+            type: 'category',
+            categoryPercentage: 0.8,
+            barPercentage: 0.9,
+            gridLines: {
+              offsetGridLines: true
+            },
+            offset: true
+          }],
           yAxes: [{
+            stacked: false,
             ticks: {
               beginAtZero: true
-            }
+            },
           }]
+      
         }
-      }
-    });
-  }
+      };
+      
+      var ctx = document.getElementById("chart").getContext("2d");
+      var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+      });
+
+
+
+}
