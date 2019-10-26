@@ -1,5 +1,4 @@
 'use strict';
-// testing remove me
 function Elemant(title, src) {
   this.title = title;
   this.src = src;
@@ -168,17 +167,8 @@ function clickHand(event) {
 
 Elemant.container.addEventListener('click', clickHand);
 
-
-
-// tableTotal();
-
 renderItems();
 
-// function makeAChart(){
-
-
-//   });
-// }
 function makeAChart() {
 
   var productNamesArray = [];
@@ -288,24 +278,3 @@ function getStoredProducts() {
 
 
 getStoredProducts();
-// function updateclicked(){
-//   var dataString=JSON.stringify( Elemant.all);
-//   localStorage.setItem('reports',dataString);
-// }
-// function getClicked(){
-//   var data =localStorage.getItem('reports');
-//   var dataOriginal=JSON.parse(data);
-//   if(dataOriginal){
-//     for (var i=0;i<dataOriginal.length;i++){
-//       var rawObject = dataOriginal[i];
-//       var currentProduct =Product.all[i];
-//       currentProduct.click=rawObject.click;
-//       currentProduct.shown=rawObject.show;
-//     }
-//   }
-// }
-// console.log('rawobject', dataOriginal[0].click);
-// console.log('product', Elemant.all[0].click);
-
-
-// getClicked();
